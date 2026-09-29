@@ -33,16 +33,35 @@ Requirements: Node 20+.
 
 ```bash
 npm install
-npm start          # then press i / a, or scan the QR code
 ```
 
-**Encryption needs a development build.** Expo Go doesn't include SQLCipher, so in Expo Go the data is stored **unencrypted** (Settings → Your data shows which case you're in). For real use, make a development or store build:
+### Quick look with Expo Go (no encryption)
+
+Install **Expo Go** from the App Store / Play Store, then:
 
 ```bash
-npx expo run:ios          # needs a Mac with Xcode
-npx expo run:android      # needs Android Studio
-# or build in the cloud, no Mac needed:
-npx eas-cli@latest build --profile development --platform ios
+npm start          # scan the QR code with the camera (iPhone) or Expo Go (Android)
+```
+
+Add `--tunnel` if the phone and computer aren't on the same Wi-Fi. Expo Go doesn't include SQLCipher, so data is stored **unencrypted** there (Settings → Your data shows which case you're in), and Face ID may not work. Use it for trying out the screens only.
+
+### Real build with encryption (cloud, no Mac needed)
+
+Needs a free [Expo account](https://expo.dev/signup). Profiles are in `eas.json`.
+
+```bash
+npx eas-cli@latest login
+npx eas-cli@latest build --profile preview --platform android   # gives an .apk link / QR code to install
+npx eas-cli@latest build --profile preview --platform ios       # needs a paid Apple Developer account
+```
+
+For iOS, register your iPhone first with `npx eas-cli@latest device:create`, then build.
+
+### Real build on your own machine
+
+```bash
+npx expo run:android --device   # Android Studio installed, phone connected by USB with USB debugging on
+npx expo run:ios --device       # Mac with Xcode, iPhone connected; a free Apple ID works (the app expires after 7 days)
 ```
 
 `npm run web` opens a browser preview for quick UI work. It stores data unencrypted in the browser and is not meant for real use.
