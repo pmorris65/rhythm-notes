@@ -5,9 +5,10 @@ import { addDays, dateRange, formatLong, parts, type ISODate } from '../domain/d
 import type { Vocabulary } from '../domain/settings';
 import { emptyLog } from '../domain/types';
 import { useStore } from '../state/store';
-import { labelsFor } from '../vocabulary';
+import { DEFAULT_PERIOD_WORD, labelsFor } from '../vocabulary';
 import { Body, Button, Card, Label, Screen, Stepper } from './components';
 import { MonthCalendar } from './MonthCalendar';
+import { PeriodWordPicker } from './PeriodWordPicker';
 import { PinSetup } from './PinSetup';
 import { spacing, useColors } from './theme';
 
@@ -22,11 +23,12 @@ export function Onboarding() {
 
   const [step, setStep] = useState<Step>('welcome');
   const [vocabulary, setVocabulary] = useState<Vocabulary>('neutral');
+  const [periodWord, setPeriodWord] = useState(DEFAULT_PERIOD_WORD);
   const [lastStart, setLastStart] = useState<ISODate | null>(null);
   const [cycleLength, setCycleLength] = useState(28);
   const [periodLength, setPeriodLength] = useState(5);
   const [view, setView] = useState(() => parts(today));
-  const labels = labelsFor(vocabulary);
+  const labels = labelsFor(vocabulary, periodWord);
 
   const finish = async (pin: string | null) => {
     if (lastStart) {
@@ -37,6 +39,7 @@ export function Onboarding() {
     if (pin) await enableLock(pin);
     await updateSettings({
       vocabulary,
+      periodWord,
       defaultCycleLength: cycleLength,
       defaultPeriodLength: periodLength,
       onboarded: true,
@@ -61,10 +64,17 @@ export function Onboarding() {
       <Screen title="Choose your wording" subtitle="You can change this later in Settings.">
         <WordingOption
           title="Neutral (recommended)"
-          example={`"${labelsFor('neutral').nextIn(3)}"`}
+          example={`"${labelsFor('neutral', periodWord).nextIn(3)}"`}
           selected={vocabulary === 'neutral'}
           onPress={() => setVocabulary('neutral')}
         />
+        {vocabulary === 'neutral' ? (
+          <Card>
+            <Label>WHAT SHOULD WE CALL IT?</Label>
+            <Body muted>Pick a word or type your own. Only you need to know what it means.</Body>
+            <PeriodWordPicker value={periodWord} onChange={setPeriodWord} />
+          </Card>
+        ) : null}
         <WordingOption
           title="Explicit"
           example={`"${labelsFor('explicit').nextIn(3)}"`}

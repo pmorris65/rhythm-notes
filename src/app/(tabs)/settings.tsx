@@ -9,6 +9,7 @@ import { useStore } from '../../state/store';
 import { useLabels } from '../../state/useLabels';
 import { Body, Row, Screen, Section, Segmented, Stepper, SwitchRow } from '../../ui/components';
 import { confirm, notify } from '../../ui/confirm';
+import { PeriodWordPicker } from '../../ui/PeriodWordPicker';
 import { spacing } from '../../ui/theme';
 
 function useBiometricsAvailable(): boolean {
@@ -128,10 +129,20 @@ export default function SettingsScreen() {
             value={settings.vocabulary}
             onChange={(vocabulary) => updateSettings({ vocabulary })}
           />
+          {settings.vocabulary === 'neutral' ? (
+            <PeriodWordPicker value={settings.periodWord} onChange={(periodWord) => updateSettings({ periodWord })} />
+          ) : null}
         </View>
       </Section>
 
-      <Section title="Predictions" footer={`Your usual lengths are used until you've logged enough ${labels.periods.toLowerCase()}. Predictions are estimates and must not be used as contraception.`}>
+      <Section
+        title="Predictions"
+        footer={`Your usual lengths are used until you've logged enough ${labels.periodsLower}. ${
+          settings.vocabulary === 'explicit'
+            ? 'Predictions are estimates and must not be used as contraception.'
+            : "Predictions are estimates only and shouldn't be relied on for health decisions."
+        }`}
+      >
         <Row
           title={`${labels.cycle} length`}
           right={
@@ -189,6 +200,6 @@ export default function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
-  padded: { padding: spacing.md },
+  padded: { padding: spacing.md, gap: spacing.lg },
   version: { textAlign: 'center', fontSize: 13 },
 });

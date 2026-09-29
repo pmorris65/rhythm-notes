@@ -1,3 +1,4 @@
+import { DEFAULT_PERIOD_WORD } from '../vocabulary';
 import type { ISODate } from './dates';
 
 export type Vocabulary = 'neutral' | 'explicit';
@@ -10,6 +11,8 @@ export interface ReminderSettings {
 export interface Settings {
   onboarded: boolean;
   vocabulary: Vocabulary;
+  /** The user's own word for "period", used with neutral wording. */
+  periodWord: string;
   defaultCycleLength: number;
   defaultPeriodLength: number;
   showFertileWindow: boolean;
@@ -31,6 +34,7 @@ export const MAX_FAILED_ATTEMPTS = 10;
 export const DEFAULT_SETTINGS: Settings = {
   onboarded: false,
   vocabulary: 'neutral',
+  periodWord: DEFAULT_PERIOD_WORD,
   defaultCycleLength: 28,
   defaultPeriodLength: 5,
   showFertileWindow: false,

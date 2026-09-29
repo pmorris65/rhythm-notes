@@ -39,7 +39,7 @@ export default function TodayScreen() {
       <Card>
         <Text style={[styles.big, { color: c.text }]}>Welcome</Text>
         <Body muted>
-          {`Tap below when your next ${labels.periodLower} starts, or add past ${labels.periods.toLowerCase()} from the Calendar.`}
+          {`Tap below when your next ${labels.periodLower} starts, or add past ${labels.periodsLower} from the Calendar.`}
         </Body>
         <Button title={labels.started} onPress={() => startPeriod(today)} />
       </Card>
@@ -120,7 +120,7 @@ export default function TodayScreen() {
               ? `Based on your last ${prediction.basedOnCycles} ${labels.cycleLower}${prediction.basedOnCycles === 1 ? '' : 's'}${
                   prediction.irregular ? ', which vary quite a bit' : ''
                 }. These are estimates.`
-              : `Based on your usual ${labels.cycleLower} length until you've logged a couple of ${labels.periods.toLowerCase()}. These are estimates.`}
+              : `Based on your usual ${labels.cycleLower} length until you've logged a couple of ${labels.periodsLower}. These are estimates.`}
           </Body>
         </Card>
       ) : null}

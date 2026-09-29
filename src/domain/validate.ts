@@ -1,3 +1,4 @@
+import { normalizePeriodWord } from '../vocabulary';
 import { isISODate } from './dates';
 import { clamp, DEFAULT_SETTINGS, type Settings } from './settings';
 import { FLOWS, MOODS, isEmptyLog, type DayLog, type Flow, type Mood } from './types';
@@ -60,6 +61,7 @@ export function sanitizeSettings(raw: unknown): Settings {
   return {
     onboarded: bool(r.onboarded, d.onboarded),
     vocabulary: r.vocabulary === 'explicit' ? 'explicit' : 'neutral',
+    periodWord: normalizePeriodWord(r.periodWord),
     defaultCycleLength: int(r.defaultCycleLength, d.defaultCycleLength, 15, 60),
     defaultPeriodLength: int(r.defaultPeriodLength, d.defaultPeriodLength, 1, 14),
     showFertileWindow: bool(r.showFertileWindow, d.showFertileWindow),

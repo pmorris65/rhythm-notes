@@ -50,7 +50,7 @@ export default function CalendarScreen() {
         </Card>
       ) : (
         <Card>
-          <Body muted>{`Tap a day to mark it as ${labels.periodLower === 'entry' ? 'an entry' : `a ${labels.periodLower}`} day. Predictions appear once one is logged.`}</Body>
+          <Body muted>{`Tap a day to mark it as ${labels.aPeriod} day. Predictions appear once one is logged.`}</Body>
         </Card>
       )}
     </Screen>

@@ -27,7 +27,7 @@ export default function InsightsScreen() {
 
       {stats.completedCycles < 2 ? (
         <Card>
-          <Body muted>{`Insights get more useful after you've logged a few ${labels.periods.toLowerCase()}.`}</Body>
+          <Body muted>{`Insights get more useful after you've logged a few ${labels.periodsLower}.`}</Body>
         </Card>
       ) : null}
 

@@ -19,7 +19,7 @@ See [PLAN.md](PLAN.md) for the product plan.
 |---|---|
 | Storage | SQLite encrypted with SQLCipher. The 256-bit key is random and kept in the iOS Keychain / Android Keystore ("this device only"). |
 | Network | None. No accounts, servers, analytics, ads or third-party SDKs that phone home. |
-| Wording | Neutral by default ("Entry", "Rhythm", "Focus days"); can be switched to explicit. |
+| Wording | Neutral by default ("Rhythm", "Focus days"). Users choose their own word for "period", either typed in or picked from suggestions (Wave, Break, Tide, Moon). Can be switched to explicit. |
 | App lock | 4-digit PIN, optional Face ID / fingerprint. Locks whenever the app goes to the background. |
 | Disguise | Optional. When locked, the app shows a plain notepad; press and hold "Notes" to get to the PIN pad. |
 | Wrong PINs | Optional: erase everything after 10 wrong PINs in a row. |

@@ -153,7 +153,7 @@ function ImportCard() {
       await restoreBackup(contents);
       setFileText(null);
       setPassword('');
-      notify('Restored', `Your notes and ${labels.periods.toLowerCase()} are back.`);
+      notify('Restored', `Your notes and ${labels.periodsLower} are back.`);
     } catch (error) {
       notify(
         "Couldn't restore",
