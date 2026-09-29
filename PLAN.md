@@ -57,6 +57,14 @@ Rhythm Notes is a period and cycle tracker built around one idea: **the user's d
 ### Calendar & Home
 - Home screen: "Day X of cycle", days until next expected period, and a quick-log button.
 - Month calendar with logged days, predicted period days, and (optionally) an estimated fertile window.
+- **Predicted next period shown on the calendar:**
+  - The predicted days of the next period (start date + expected period length) are marked directly on the calendar.
+  - Predicted days look clearly different from logged days (e.g. outlined/dashed instead of filled) so users can tell an estimate from a real entry.
+  - When cycles are irregular, the whole likely range is shown (e.g. lighter shading on the less-likely days).
+  - Predictions for the next few cycles (e.g. 3 months ahead) are shown when scrolling forward.
+  - Predictions update right away whenever a new period is logged or an old one is edited.
+  - Tapping a predicted day shows "Expected" and a one-tap "Started today" button to confirm it.
+  - Uses the neutral vocabulary when that's on (e.g. "Expected entry").
 - Tap any day to view/edit that day's log.
 
 ### Predictions
@@ -124,7 +132,7 @@ rhythm-notes/
 
 1. **Foundation** — Expo project, TypeScript, lint/test setup, navigation skeleton, encrypted DB.
 2. **Logging + Calendar** — day log screen, calendar view, period start/end.
-3. **Predictions + Home** — cycle math (with unit tests), home dashboard.
+3. **Predictions + Home** — cycle math (with unit tests), predicted period days on the calendar, home dashboard.
 4. **Discretion & Security** — PIN/biometric lock, disguise screen, app-switcher blur, neutral vocabulary, neutral notifications.
 5. **Insights + Reminders** — stats screens, local notifications.
 6. **Backup & Wipe** — encrypted export/import, delete-all, panic wipe.
