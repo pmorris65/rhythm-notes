@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "Rhythm Notes",
+    "slug": "rhythm-notes",
+    "scheme": "rhythmnotes",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rhythmnotes.app"
+    },
+    "android": {
+      "package": "com.rhythmnotes.app",
+      "allowBackup": false,
+      "adaptiveIcon": {
+        "backgroundColor": "#F6F4EF",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-sqlite",
+        {
+          "useSQLCipher": true
+        }
+      ],
+      [
+        "expo-secure-store",
+        {
+          "faceIDPermission": "Unlock your notes with Face ID.",
+          "configureAndroidBackup": true
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Unlock your notes with Face ID."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#2F6B70"
+        }
+      ]
+    ]
+  }
+}
